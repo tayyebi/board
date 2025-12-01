@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tayyebi Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Notice container for messages -->
+    <div id="notice-container"></div>
+
+    <!-- Header partial -->
+    <header id="header-content">
+        <div class="loading">Loading...</div>
+    </header>
+
+    <!-- Create form partial -->
+    <div id="create-form" class="panel">
+        <div class="loading">Loading form...</div>
+    </div>
+
+    <!-- Board content partial -->
+    <div id="board-content">
+        <div class="loading">Loading board...</div>
+    </div>
+
+    <!-- Settings modal partial -->
+    <div id="settingsModal" class="modal-backdrop">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-describedby="settingsBody">
+            <div class="modal-head">
+                <h2 id="settingsTitle">Board Settings</h2>
+                <button class="close" onclick="Board.closeSettings()">✕</button>
+            </div>
+            <div id="settingsBody" class="modal-body">
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                    <div style="flex:1 1 420px;min-width:280px">
+                        <h3 style="margin:6px 0 8px">Reorder Swimlanes & Colors</h3>
+                        <div id="lanesList" style="display:flex;flex-direction:column;gap:8px">
+                            <!-- Lanes rendered by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div style="flex:1 1 320px;min-width:260px">
+                        <h3 style="margin:6px 0 8px">Manage Swimlanes</h3>
+                        <form class="form" style="margin-bottom:8px" onsubmit="Board.addSwimlane(event)">
+                            <input type="text" name="swimlane" placeholder="New swimlane" required>
+                            <input type="text" name="first_column" placeholder="First column" required>
+                            <button class="btn" type="submit">Add</button>
+                        </form>
+
+                        <form class="form" style="margin-bottom:8px" onsubmit="Board.renameSwimlane(event)">
+                            <select name="old_swimlane" class="settings-swimlane-select" required></select>
+                            <input type="text" name="new_swimlane" placeholder="New name" required>
+                            <button class="btn" type="submit">Rename</button>
+                        </form>
+
+                        <form class="form" style="margin-bottom:8px" onsubmit="Board.deleteSwimlane(event)">
+                            <select name="swimlane" class="settings-swimlane-select" required></select>
+                            <select name="fallback_swimlane" class="settings-swimlane-select" required></select>
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+
+                        <hr style="margin:12px 0;border:none;border-top:1px solid #eee">
+
+                        <h3 style="margin:6px 0 8px">Manage Columns</h3>
+                        <form class="form" style="margin-bottom:8px" onsubmit="Board.addColumn(event)">
+                            <select name="swimlane" class="settings-swimlane-select" required></select>
+                            <input type="text" name="column" placeholder="New column" required>
+                            <button class="btn" type="submit">Add</button>
+                        </form>
+
+                        <form class="form" style="margin-bottom:8px" onsubmit="Board.renameColumn(event)">
+                            <select name="swimlane" class="settings-swimlane-select" required></select>
+                            <input type="text" name="old_column" placeholder="Old column" required>
+                            <input type="text" name="new_column" placeholder="New column" required>
+                            <button class="btn" type="submit">Rename</button>
+                        </form>
+
+                        <form class="form" onsubmit="Board.deleteColumn(event)">
+                            <select name="swimlane" class="settings-swimlane-select" required></select>
+                            <input type="text" name="column" placeholder="Column to delete" required>
+                            <input type="text" name="fallback_column" placeholder="Fallback column" required>
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+
+                        <div style="margin-top:12px;display:flex;gap:8px">
+                            <button class="btn" onclick="Board.saveSettings()">Save colors & order</button>
+                            <button class="btn" onclick="Board.closeSettings()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task modal partial -->
+    <div id="taskModal" class="modal-backdrop">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="taskTitle" aria-describedby="taskBody">
+            <div class="modal-head">
+                <h2 id="taskTitle">Task Settings</h2>
+                <button class="close" onclick="Board.closeTaskSettings()">✕</button>
+            </div>
+            <div id="taskBody" class="modal-body">
+                <form id="taskSettingsForm" class="form" onsubmit="Board.saveTask(event)">
+                    <input type="hidden" id="task_id" value="">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <input type="text" id="task_title" placeholder="Title" required style="flex:1 1 300px">
+                        <input type="text" id="task_due" placeholder="Due (optional)">
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:8px">
+                        <select id="task_swimlane" onchange="Board.syncColumns(this)" required></select>
+                        <select id="task_column" required></select>
+                    </div>
+                    <textarea id="task_notes" placeholder="Notes" style="width:100%;margin-top:8px"></textarea>
+                    <div style="display:flex;gap:8px;margin-top:8px">
+                        <button class="btn" type="submit">Save</button>
+                        <button class="btn" type="button" onclick="Board.deleteTaskFromModal()">Delete</button>
+                        <button class="btn" type="button" onclick="Board.closeTaskSettings()">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main application JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>

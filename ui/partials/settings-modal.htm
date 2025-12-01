@@ -1,0 +1,67 @@
+<div id="settingsModal" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-describedby="settingsBody">
+        <div class="modal-head">
+            <h2 id="settingsTitle">Board Settings</h2>
+            <button class="close" onclick="Board.closeSettings()">✕</button>
+        </div>
+        <div id="settingsBody" class="modal-body">
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <div style="flex:1 1 420px;min-width:280px">
+                    <h3 style="margin:6px 0 8px">Reorder Swimlanes & Colors</h3>
+                    <div id="lanesList" style="display:flex;flex-direction:column;gap:8px">
+                        <!-- Lanes rendered by JavaScript -->
+                    </div>
+                </div>
+
+                <div style="flex:1 1 320px;min-width:260px">
+                    <h3 style="margin:6px 0 8px">Manage Swimlanes</h3>
+                    <form class="form" style="margin-bottom:8px" onsubmit="Board.addSwimlane(event)">
+                        <input type="text" name="swimlane" placeholder="New swimlane" required>
+                        <input type="text" name="first_column" placeholder="First column" required>
+                        <button class="btn" type="submit">Add</button>
+                    </form>
+
+                    <form class="form" style="margin-bottom:8px" onsubmit="Board.renameSwimlane(event)">
+                        <select name="old_swimlane" class="settings-swimlane-select" required></select>
+                        <input type="text" name="new_swimlane" placeholder="New name" required>
+                        <button class="btn" type="submit">Rename</button>
+                    </form>
+
+                    <form class="form" style="margin-bottom:8px" onsubmit="Board.deleteSwimlane(event)">
+                        <select name="swimlane" class="settings-swimlane-select" required></select>
+                        <select name="fallback_swimlane" class="settings-swimlane-select" required></select>
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+
+                    <hr style="margin:12px 0;border:none;border-top:1px solid #eee">
+
+                    <h3 style="margin:6px 0 8px">Manage Columns</h3>
+                    <form class="form" style="margin-bottom:8px" onsubmit="Board.addColumn(event)">
+                        <select name="swimlane" class="settings-swimlane-select" required></select>
+                        <input type="text" name="column" placeholder="New column" required>
+                        <button class="btn" type="submit">Add</button>
+                    </form>
+
+                    <form class="form" style="margin-bottom:8px" onsubmit="Board.renameColumn(event)">
+                        <select name="swimlane" class="settings-swimlane-select" required></select>
+                        <input type="text" name="old_column" placeholder="Old column" required>
+                        <input type="text" name="new_column" placeholder="New column" required>
+                        <button class="btn" type="submit">Rename</button>
+                    </form>
+
+                    <form class="form" onsubmit="Board.deleteColumn(event)">
+                        <select name="swimlane" class="settings-swimlane-select" required></select>
+                        <input type="text" name="column" placeholder="Column to delete" required>
+                        <input type="text" name="fallback_column" placeholder="Fallback column" required>
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+
+                    <div style="margin-top:12px;display:flex;gap:8px">
+                        <button class="btn" onclick="Board.saveSettings()">Save colors & order</button>
+                        <button class="btn" onclick="Board.closeSettings()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

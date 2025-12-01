@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  board:
+    image: php:8.2-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "php -S 0.0.0.0:8080 -t /app router.php"
+    restart: unless-stopped
