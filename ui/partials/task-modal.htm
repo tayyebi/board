@@ -1,10 +1,10 @@
 <div id="taskModal" class="modal-backdrop">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="taskTitle">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="taskTitle" aria-describedby="taskBody">
         <div class="modal-head">
             <h2 id="taskTitle">Task Settings</h2>
             <button class="close" onclick="Board.closeTaskSettings()">✕</button>
         </div>
-        <div class="modal-body">
+        <div id="taskBody" class="modal-body">
             <form id="taskSettingsForm" class="form" onsubmit="Board.saveTask(event)">
                 <input type="hidden" id="task_id" value="">
                 <div style="display:flex;gap:8px;flex-wrap:wrap">

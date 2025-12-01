@@ -27,12 +27,12 @@
 
     <!-- Settings modal partial -->
     <div id="settingsModal" class="modal-backdrop">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-describedby="settingsBody">
             <div class="modal-head">
                 <h2 id="settingsTitle">Board Settings</h2>
                 <button class="close" onclick="Board.closeSettings()">✕</button>
             </div>
-            <div class="modal-body">
+            <div id="settingsBody" class="modal-body">
                 <div style="display:flex;gap:12px;flex-wrap:wrap">
                     <div style="flex:1 1 420px;min-width:280px">
                         <h3 style="margin:6px 0 8px">Reorder Swimlanes & Colors</h3>
@@ -96,12 +96,12 @@
 
     <!-- Task modal partial -->
     <div id="taskModal" class="modal-backdrop">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="taskTitle">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="taskTitle" aria-describedby="taskBody">
             <div class="modal-head">
                 <h2 id="taskTitle">Task Settings</h2>
                 <button class="close" onclick="Board.closeTaskSettings()">✕</button>
             </div>
-            <div class="modal-body">
+            <div id="taskBody" class="modal-body">
                 <form id="taskSettingsForm" class="form" onsubmit="Board.saveTask(event)">
                     <input type="hidden" id="task_id" value="">
                     <div style="display:flex;gap:8px;flex-wrap:wrap">

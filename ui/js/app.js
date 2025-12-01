@@ -5,7 +5,8 @@
 const Board = {
     config: {
         apiBase: '/api',
-        title: 'Tayyebi Board'
+        title: 'Tayyebi Board',
+        defaultColor: '#ffffff'
     },
 
     state: {
@@ -416,7 +417,7 @@ const Board = {
             const colsHtml = meta.cols.map(col => `
                 <span class="col-chip">
                     ${this.escapeHtml(col)}
-                    <input class="color-input" type="color" data-swl="${this.escapeHtml(swl)}" data-col="${this.escapeHtml(col)}" value="#ffffff">
+                    <input class="color-input" type="color" data-swl="${this.escapeHtml(swl)}" data-col="${this.escapeHtml(col)}" value="${this.config.defaultColor}">
                 </span>
             `).join('');
 
@@ -433,7 +434,7 @@ const Board = {
                         </div>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-                        <input class="color-input" type="color" data-swl="${this.escapeHtml(swl)}" value="${meta.color || '#ffffff'}">
+                        <input class="color-input" type="color" data-swl="${this.escapeHtml(swl)}" value="${meta.color || this.config.defaultColor}">
                     </div>
                 </div>
             `;

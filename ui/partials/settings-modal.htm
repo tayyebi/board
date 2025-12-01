@@ -1,10 +1,10 @@
 <div id="settingsModal" class="modal-backdrop">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-describedby="settingsBody">
         <div class="modal-head">
             <h2 id="settingsTitle">Board Settings</h2>
             <button class="close" onclick="Board.closeSettings()">✕</button>
         </div>
-        <div class="modal-body">
+        <div id="settingsBody" class="modal-body">
             <div style="display:flex;gap:12px;flex-wrap:wrap">
                 <div style="flex:1 1 420px;min-width:280px">
                     <h3 style="margin:6px 0 8px">Reorder Swimlanes & Colors</h3>
