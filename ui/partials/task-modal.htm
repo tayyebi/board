@@ -1,0 +1,27 @@
+<div id="taskModal" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="taskTitle">
+        <div class="modal-head">
+            <h2 id="taskTitle">Task Settings</h2>
+            <button class="close" onclick="Board.closeTaskSettings()">✕</button>
+        </div>
+        <div class="modal-body">
+            <form id="taskSettingsForm" class="form" onsubmit="Board.saveTask(event)">
+                <input type="hidden" id="task_id" value="">
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                    <input type="text" id="task_title" placeholder="Title" required style="flex:1 1 300px">
+                    <input type="text" id="task_due" placeholder="Due (optional)">
+                </div>
+                <div style="display:flex;gap:8px;margin-top:8px">
+                    <select id="task_swimlane" onchange="Board.syncColumns(this)" required></select>
+                    <select id="task_column" required></select>
+                </div>
+                <textarea id="task_notes" placeholder="Notes" style="width:100%;margin-top:8px"></textarea>
+                <div style="display:flex;gap:8px;margin-top:8px">
+                    <button class="btn" type="submit">Save</button>
+                    <button class="btn" type="button" onclick="Board.deleteTaskFromModal()">Delete</button>
+                    <button class="btn" type="button" onclick="Board.closeTaskSettings()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

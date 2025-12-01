@@ -1,0 +1,324 @@
+/* Main stylesheet for Tayyebi Board */
+
+:root {
+    --bg: #f7f7f7;
+    --panel: #fff;
+    --text: #222;
+    --muted: #666;
+    --shadow: rgba(0, 0, 0, 0.06);
+    --modal-bg: rgba(0, 0, 0, 0.45);
+    --border: #e5e5e5;
+    --border-light: #eee;
+    --border-dashed: #ddd;
+    --bg-light: #fafafa;
+    --bg-form: #fcfcfc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 10px;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 6px 4px 12px;
+    gap: 12px;
+}
+
+h1 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.meta {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Buttons */
+.btn {
+    font-size: 12px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-dashed);
+    border-radius: 6px;
+    background: var(--bg-light);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--border-light);
+}
+
+/* Panels */
+.panel {
+    margin-bottom: 12px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px var(--shadow);
+}
+
+/* Forms */
+.form {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 8px;
+    border: 1px dashed var(--border-dashed);
+    border-radius: 6px;
+    background: var(--bg-form);
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+    padding: 6px;
+    border: 1px solid var(--border-dashed);
+    border-radius: 4px;
+}
+
+textarea {
+    min-width: 220px;
+    min-height: 60px;
+}
+
+/* Swimlanes */
+.swimlane {
+    margin-bottom: 12px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px var(--shadow);
+}
+
+.swl-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.stripe {
+    width: 12px;
+    height: 18px;
+    flex: 0 0 12px;
+    border-radius: 3px;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.08) 0px,
+        rgba(0, 0, 0, 0.08) 4px,
+        transparent 4px,
+        transparent 8px
+    );
+}
+
+/* Columns */
+.cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+}
+
+.col {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px var(--shadow);
+}
+
+.col-head {
+    padding: 8px 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.col-body {
+    padding: 8px;
+    min-height: 60px;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 8px;
+    margin: 6px 0;
+    box-shadow: 0 1px 1px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: grab;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card.dragging {
+    opacity: 0.5;
+}
+
+.title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.info {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.actions {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.empty {
+    color: #999;
+    font-size: 12px;
+    padding: 6px;
+}
+
+/* Modals */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--modal-bg);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-backdrop.active {
+    display: flex;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: auto;
+    padding: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.modal .close {
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    font-size: 18px;
+}
+
+/* Settings modal specific */
+.lane-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    background: var(--bg-light);
+}
+
+.lane-handle {
+    cursor: grab;
+    padding: 6px;
+    border: 1px solid var(--border-dashed);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.col-chip {
+    padding: 4px 8px;
+    background: #fff;
+    border: 1px solid var(--border-dashed);
+    border-radius: 6px;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.color-input {
+    width: 36px;
+    height: 28px;
+    border: 1px solid var(--border-dashed);
+    padding: 0;
+}
+
+/* Loading state */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--muted);
+}
+
+/* Notice messages */
+.notice {
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #2e7d32;
+}
+
+.notice.error {
+    background: #ffebee;
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .cols {
+        grid-template-columns: 1fr;
+    }
+
+    .modal {
+        width: 96%;
+    }
+}
